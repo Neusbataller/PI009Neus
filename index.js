@@ -3,7 +3,7 @@ const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
 
-app.set("port", process.env.PORT || 10000);
+app.set("port", process.env.PORT);
 
 // Middleware
 app.use(morgan("dev"));
