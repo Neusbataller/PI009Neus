@@ -48,7 +48,10 @@ router.post("/rutaPost_IA", async (req, res) => {
 
     res.json({ content: respuesta });
   } catch (error) {
-    console.error("Error al llamar a OpenAI:", error);
+    console.error(
+      "Error al llamar a OpenAI:",
+      error.response?.data || error.message || error
+    );
     res.status(500).json({ content: "Error en el servidor" });
   }
 });
