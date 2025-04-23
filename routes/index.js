@@ -36,11 +36,19 @@ router.post("/rutaPost_IA", async (req, res) => {
   const pregunta = req.body.pregunta;
 
   try {
-    const respuesta = `Hola, soy tu asistente IA. Me preguntaste: ${pregunta}`;
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4",
+      messages: [
+        { role: "system", content: "Eres un asistente muy útil." },
+        { role: "user", content: pregunta },
+      ],
+    });
+
+    const respuesta = completion.choices[0].message.content;
 
     res.json({ content: respuesta });
   } catch (error) {
-    console.error("Error en /rutaPost_IA:", error);
+    console.error("Error al llamar a OpenAI:", error);
     res.status(500).json({ content: "Error en el servidor" });
   }
 });
