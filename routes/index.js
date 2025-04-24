@@ -37,7 +37,7 @@ router.post("/rutaPost_IA", async (req, res) => {
 
   try {
     const completion = await openai.chat.completions.create({
-      model: "gpt-4",
+      model: "gpt-3.5-turbo",
       messages: [
         { role: "system", content: "Eres un asistente muy útil." },
         { role: "user", content: pregunta },
